@@ -1,0 +1,56 @@
+:root {
+  --bg: #f7f6f2;
+  --surface: #ffffff;
+  --surface-muted: #eeece5;
+  --text-primary: #1e1d1b;
+  --text-secondary: #5c5a54;
+  --text-muted: #8b887f;
+  --border: #e2dfd6;
+  --brand: #0f5a4a;
+  --brand-hover: #0c4a3d;
+  --result: #c4622d;
+  --result-bg: #fbeee5;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input {
+  font-family: inherit;
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
