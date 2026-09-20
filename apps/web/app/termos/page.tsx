@@ -56,7 +56,7 @@ export default function TermosPage() {
       <h2 style={{ fontSize: 16, color: "var(--text-primary)", marginTop: 24 }}>
         Contato
       </h2>
-      <p>Dúvidas sobre estes termos podem ser enviadas para resollvi@gmail.com.</p>
+      <p>Dúvidas sobre estes termos podem ser enviadas para contato@resollvi.com.br.</p>
     </InstitutionalPage>
   );
 }

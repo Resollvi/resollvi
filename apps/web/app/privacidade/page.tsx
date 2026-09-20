@@ -53,14 +53,14 @@ export default function PrivacidadePage() {
       <p>
         Conforme a LGPD, você pode solicitar a qualquer momento a confirmação da
         existência de tratamento, acesso, correção ou eliminação dos seus dados. Para
-        exercer esses direitos, entre em contato pelo e-mail resollvi@gmail.com.
+        exercer esses direitos, entre em contato pelo e-mail contato@resollvi.com.br.
       </p>
 
       <h2 style={{ fontSize: 16, color: "var(--text-primary)", marginTop: 24 }}>
         Contato
       </h2>
       <p>
-        Dúvidas sobre esta política podem ser enviadas para resollvi@gmail.com.
+        Dúvidas sobre esta política podem ser enviadas para contato@resollvi.com.br.
       </p>
     </InstitutionalPage>
   );

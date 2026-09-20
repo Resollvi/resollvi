@@ -39,7 +39,7 @@ nova.
 - `/sobre`, `/privacidade`, `/termos`, `/contato` — em
   `apps/web/app/<pagina>/page.tsx`, usando o componente
   `InstitutionalPage`.
-- E-mail de contato definido: `resollvi@gmail.com` (Gmail dedicado ao
+- E-mail de contato definido: `contato@resollvi.com.br` (Gmail dedicado ao
   projeto para o MVP — migrar para e-mail no domínio próprio, ex. via
   redirecionamento gratuito do Cloudflare, quando possível).
 - Data de "última atualização" preenchida com a data de publicação
