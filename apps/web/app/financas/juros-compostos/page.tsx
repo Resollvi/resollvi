@@ -52,7 +52,9 @@ export default function JurosCompostosPage() {
             passa a incidir sobre o capital acumulado até ali, não só sobre o valor
             inicial — por isso o crescimento acelera com o tempo. A fórmula usada aqui é
             M = C × (1 + i)^n, onde C é o capital inicial, i a taxa por período e n o
-            número de períodos.
+            número de períodos. Se você investe um valor todo mês (aporte mensal), esse
+            valor também passa a render juros nos meses seguintes — use o campo de aporte
+            para simular isso, e veja a evolução mês a mês na tabela abaixo do resultado.
           </p>
         }
         relatedTools={[

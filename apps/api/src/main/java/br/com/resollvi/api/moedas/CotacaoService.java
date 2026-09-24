@@ -17,9 +17,7 @@ public class CotacaoService {
     private static final Logger log = LoggerFactory.getLogger(CotacaoService.class);
 
     // O HttpClient padrão do Java NÃO segue redirecionamentos (301/302) por
-    // padrão — precisa ser configurado explicitamente. Sem isso, uma API que
-    // redirecione (ex: Cloudflare fazendo um 301) entrega a página HTML do
-    // redirecionamento em vez do JSON de verdade.
+    // padrão — precisa ser configurado explicitamente.
     private final HttpClient httpClient = HttpClient.newBuilder()
         .followRedirects(HttpClient.Redirect.NORMAL)
         .build();
@@ -31,8 +29,11 @@ public class CotacaoService {
         .defaultHeader("User-Agent", "Resollvi/1.0 (+https://resollvi.com.br)")
         .build();
 
+    public record CotacaoResultado(double taxa, String data) {
+    }
+
     @Cacheable(value = "cotacoes", key = "#de + '-' + #para")
-    public double buscarTaxa(String de, String para) {
+    public CotacaoResultado buscarTaxa(String de, String para) {
         String corpoBruto = restClient
             .get()
             .uri("/latest?from={de}&to={para}", de, para)
@@ -58,10 +59,10 @@ public class CotacaoService {
         if (response.rates() == null || response.rates().get(para) == null) {
             throw new IllegalStateException("par de moedas não suportado: " + de + " -> " + para);
         }
-        return response.rates().get(para);
+        return new CotacaoResultado(response.rates().get(para), response.date());
     }
 
     @com.fasterxml.jackson.annotation.JsonIgnoreProperties(ignoreUnknown = true)
-    private record FrankfurterResponse(String base, Map<String, Double> rates) {
+    private record FrankfurterResponse(String base, String date, Map<String, Double> rates) {
     }
 }

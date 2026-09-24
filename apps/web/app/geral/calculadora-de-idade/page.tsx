@@ -48,10 +48,14 @@ export default function IdadePage() {
         supportTitle="Como a idade é calculada?"
         supportContent={
           <p>
-            O cálculo compara a data de nascimento informada com a data de hoje,
-            considerando o número exato de dias em cada mês (incluindo anos bissextos)
-            para chegar num resultado preciso em anos, meses e dias — não é só uma
-            subtração simples de anos.
+            O cálculo compara a data de nascimento informada com uma data de referência
+            (por padrão, hoje), considerando o número exato de dias em cada mês
+            (incluindo anos bissextos) para chegar num resultado preciso em anos, meses e
+            dias — não é só uma subtração simples de anos. Você pode trocar a data de
+            referência por qualquer data passada ou futura — útil pra saber a idade exata
+            numa data de prova, concurso, casamento ou aposentadoria. A calculadora também
+            mostra quantos dias faltam para o seu próximo aniversário, sempre em relação a
+            hoje.
           </p>
         }
         relatedTools={[

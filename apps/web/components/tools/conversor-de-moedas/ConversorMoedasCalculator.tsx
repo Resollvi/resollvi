@@ -10,6 +10,7 @@ export function ConversorMoedasCalculator() {
   const [de, setDe] = useState("USD");
   const [para, setPara] = useState("BRL");
   const [resultado, setResultado] = useState<number | null>(null);
+  const [dataCotacao, setDataCotacao] = useState<string | null>(null);
   const [erro, setErro] = useState<string | null>(null);
   const [carregando, setCarregando] = useState(false);
 
@@ -25,6 +26,7 @@ export function ConversorMoedasCalculator() {
       if (!res.ok) throw new Error("falha na conversão");
       const data = await res.json();
       setResultado(data.resultado);
+      setDataCotacao(data.dataCotacao ?? null);
     } catch {
       setErro("não foi possível buscar a cotação agora. tente novamente em instantes.");
     } finally {
@@ -52,7 +54,18 @@ export function ConversorMoedasCalculator() {
       <CalculateButton>{carregando ? "convertendo..." : "converter"}</CalculateButton>
       {erro && <p style={{ color: "var(--result)", fontSize: 13, marginTop: 8 }}>{erro}</p>}
       {resultado !== null && !erro && (
-        <ResultCard label={`${valor} ${de} equivale a`} value={resultado.toLocaleString("pt-BR", { maximumFractionDigits: 2 })} helper={para} />
+        <>
+          <ResultCard
+            label={`${valor} ${de} equivale a`}
+            value={resultado.toLocaleString("pt-BR", { maximumFractionDigits: 2 })}
+            helper={para}
+          />
+          {dataCotacao && (
+            <p style={{ fontSize: 12, color: "var(--text-muted)", marginTop: 8, textAlign: "center" }}>
+              cotação de {new Date(dataCotacao + "T00:00:00").toLocaleDateString("pt-BR")}
+            </p>
+          )}
+        </>
       )}
     </form>
   );

@@ -21,8 +21,8 @@ public class ConversorMoedasController {
         @RequestParam String para,
         @RequestParam double valor
     ) {
-        double taxa = cotacaoService.buscarTaxa(de, para);
-        double resultado = valor * taxa;
-        return new ConversaoResponse(de, para, valor, resultado);
+        CotacaoService.CotacaoResultado cotacao = cotacaoService.buscarTaxa(de, para);
+        double resultado = valor * cotacao.taxa();
+        return new ConversaoResponse(de, para, valor, resultado, cotacao.data());
     }
 }

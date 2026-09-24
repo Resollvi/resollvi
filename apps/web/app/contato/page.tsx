@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://resollvi.com.br/contato" },
 };
 
-const EMAIL_CONTATO = "contato@resollvi.com.br";
+const EMAIL_CONTATO = "resollvi@gmail.com";
 
 export default function ContatoPage() {
   return (

@@ -49,9 +49,11 @@ export default function PorcentagemPage() {
         supportContent={
           <p>
             Porcentagem é uma fração de base 100 — 15% de um valor significa multiplicar
-            esse valor por 15/100. Essa calculadora mostra tanto o valor final com o
-            percentual aplicado (útil para descontos e aumentos) quanto a parcela isolada
-            que aquele percentual representa, para você conferir os dois números de uma vez.
+            esse valor por 15/100. Essa calculadora mostra o valor final com o percentual
+            aplicado (útil para descontos e aumentos), a parcela isolada que aquele
+            percentual representa, e também o cálculo inverso: dado um valor e um total,
+            descubra que porcentagem esse valor representa — útil, por exemplo, pra saber
+            qual nota percentual você tirou numa prova (acertos/total de questões).
           </p>
         }
         relatedTools={[

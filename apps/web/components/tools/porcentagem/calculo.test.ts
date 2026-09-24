@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { calcularAumento, calcularDesconto, calcularProporcao } from "./calculo";
+import { calcularAumento, calcularDesconto, calcularProporcao, calcularPercentualRelativo } from "./calculo";
 
 describe("calcularAumento", () => {
   it("aplica um aumento percentual corretamente", () => {
@@ -28,5 +28,19 @@ describe("calcularProporcao", () => {
 
   it("retorna zero para percentual zero", () => {
     expect(calcularProporcao(200, 0)).toBe(0);
+  });
+});
+
+describe("calcularPercentualRelativo", () => {
+  it("calcula que porcentagem uma parte representa do total", () => {
+    expect(calcularPercentualRelativo(30, 200)).toBeCloseTo(15, 2);
+  });
+
+  it("retorna 100 quando a parte é igual ao total", () => {
+    expect(calcularPercentualRelativo(50, 50)).toBe(100);
+  });
+
+  it("retorna zero quando o total é zero (evita divisão por zero)", () => {
+    expect(calcularPercentualRelativo(10, 0)).toBe(0);
   });
 });
