@@ -10,6 +10,11 @@ type RelatedTool = {
   title: string;
 };
 
+export type FaqItem = {
+  question: string;
+  answer: string;
+};
+
 type ToolPageLayoutProps = {
   breadcrumbs: Breadcrumb[];
   title: string;
@@ -17,6 +22,7 @@ type ToolPageLayoutProps = {
   children: React.ReactNode;
   supportTitle: string;
   supportContent: React.ReactNode;
+  faq?: FaqItem[];
   relatedTools: RelatedTool[];
 };
 
@@ -27,8 +33,22 @@ export function ToolPageLayout({
   children,
   supportTitle,
   supportContent,
+  faq = [],
   relatedTools,
 }: ToolPageLayoutProps) {
+  const faqSchema =
+    faq.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faq.map((item) => ({
+            "@type": "Question",
+            name: item.question,
+            acceptedAnswer: { "@type": "Answer", text: item.answer },
+          })),
+        }
+      : null;
+
   return (
     <div className="container" style={{ paddingTop: 24, paddingBottom: 48 }}>
       <nav aria-label="breadcrumb" style={{ fontSize: 12, color: "var(--text-muted)", marginBottom: 16 }}>
@@ -78,6 +98,28 @@ export function ToolPageLayout({
         <div style={{ fontSize: 14, color: "var(--text-secondary)", lineHeight: 1.7 }}>
           {supportContent}
         </div>
+
+        {faqSchema && (
+          <div style={{ marginTop: 8 }}>
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+            />
+            <h3 style={{ fontSize: 15, fontWeight: 600, margin: "24px 0 8px" }}>
+              Perguntas frequentes
+            </h3>
+            <div style={{ fontSize: 14, color: "var(--text-secondary)", lineHeight: 1.7 }}>
+              {faq.map((item) => (
+                <div key={item.question} style={{ marginBottom: 14 }}>
+                  <h4 style={{ fontSize: 14, fontWeight: 600, margin: "0 0 2px" }}>
+                    {item.question}
+                  </h4>
+                  <p style={{ margin: 0 }}>{item.answer}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {relatedTools.length > 0 && (
           <div style={{ marginTop: 20 }}>

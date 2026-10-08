@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { ToolPageLayout } from "@/components/tools/ToolPageLayout";
+import { ToolPageLayout, type FaqItem } from "@/components/tools/ToolPageLayout";
 import { IdadeCalculator } from "@/components/tools/idade/IdadeCalculator";
+import { SupportH3, SupportP, SupportList } from "@/components/tools/SupportContent";
 
 export const metadata: Metadata = {
   title: "Calculadora de idade online grátis",
@@ -33,6 +34,27 @@ const breadcrumbSchema = {
   ],
 };
 
+const faq: FaqItem[] = [
+  {
+    question: "Como calcular a idade manualmente?",
+    answer:
+      "Subtraia o ano de nascimento do ano de referência. Se o aniversário ainda não ocorreu naquele ano, subtraia mais 1.",
+  },
+  {
+    question: "Posso saber minha idade em uma data futura?",
+    answer: "Sim. Troque o campo “calcular idade em” pela data desejada.",
+  },
+  {
+    question: "Posso usar o resultado em documentos oficiais?",
+    answer:
+      "Use como referência. Para fins oficiais, vale a regra do órgão ou do edital, que pode definir a data e a forma de contagem.",
+  },
+  {
+    question: "Os dias até o aniversário também mudam com a data de referência?",
+    answer: "Não. Essa contagem usa sempre a data de hoje.",
+  },
+];
+
 export default function IdadePage() {
   return (
     <>
@@ -47,17 +69,61 @@ export default function IdadePage() {
         description="Informe sua data de nascimento para calcular sua idade exata"
         supportTitle="Como a idade é calculada?"
         supportContent={
-          <p>
-            O cálculo compara a data de nascimento informada com uma data de referência
-            (por padrão, hoje), considerando o número exato de dias em cada mês
-            (incluindo anos bissextos) para chegar num resultado preciso em anos, meses e
-            dias — não é só uma subtração simples de anos. Você pode trocar a data de
-            referência por qualquer data passada ou futura — útil pra saber a idade exata
-            numa data de prova, concurso, casamento ou aposentadoria. A calculadora também
-            mostra quantos dias faltam para o seu próximo aniversário, sempre em relação a
-            hoje.
-          </p>
+          <>
+            <SupportH3>Como a idade é calculada</SupportH3>
+            <SupportP>
+              A calculadora compara a data de nascimento com uma data de referência, que por
+              padrão é hoje. Primeiro conta os anos completos, depois os meses e os dias
+              restantes, usando o número real de dias de cada mês, inclusive em anos
+              bissextos.
+            </SupportP>
+            <SupportP>
+              Exemplo: quem nasceu em 15/06/2000 tem, em 19/09/2026, 26 anos, 3 meses e 4
+              dias.
+            </SupportP>
+
+            <SupportH3>Quando usar a data de referência</SupportH3>
+            <SupportP>
+              O campo “calcular idade em” aceita qualquer data, passada ou futura. Ele é útil
+              em situações como estas:
+            </SupportP>
+            <SupportList
+              items={[
+                <>
+                  <strong>Concursos:</strong> o edital costuma definir uma data (inscrição,
+                  posse ou outra) para os limites de idade. Informe essa data para conferir
+                  se você se enquadra.
+                </>,
+                <>
+                  <strong>Matrícula escolar:</strong> redes de ensino costumam definir uma data
+                  de corte para a idade mínima de cada série. Confira a regra da sua rede ou
+                  escola e informe essa data.
+                </>,
+                <>
+                  <strong>Planejamento:</strong> teste datas futuras para saber a idade exata
+                  em marcos como 18, 60 ou 65 anos.
+                </>,
+                <>
+                  <strong>Registros passados:</strong> descubra a idade que alguém tinha em uma
+                  data específica.
+                </>,
+              ]}
+            />
+
+            <SupportH3>Dias até o próximo aniversário</SupportH3>
+            <SupportP>
+              A contagem é sempre feita a partir de hoje. Se o aniversário for hoje, a
+              calculadora avisa.
+            </SupportP>
+
+            <SupportH3>Privacidade</SupportH3>
+            <SupportP>
+              O cálculo acontece no seu navegador. A data de nascimento não é enviada nem
+              guardada em nossos servidores.
+            </SupportP>
+          </>
         }
+        faq={faq}
         relatedTools={[
           { href: "/saude/imc", title: "calculadora de IMC" },
           { href: "/matematica/porcentagem", title: "calculadora de porcentagem" },
